@@ -1,0 +1,64 @@
+{
+  "name": "vscode-extension",
+  "displayName": "vscode-extension",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "calico",
+          "title": "Calico Colors",
+          "icon": "$(account)"
+        }
+      ]
+    },
+    "views": {
+      "calico": [
+        {
+          "id": "colorsView",
+          "type": "webview",
+          "name": "Calico"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "calicoColors.addColor",
+        "category": "Calico Colors",
+        "title": "Add Color"
+      },
+      {
+        "command": "calicoColors.clearColors",
+        "category": "Calico Colors",
+        "title": "Clear Colors",
+        "icon": "$(clear-all)"
+      }
+    ]
+  },
+  "scripts": {
+    "prepare": "yarn run clean && yarn run build && yarn symlink",
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "symlink": "symlink-dir . ../../plugins/vs-code-extension",
+    "clean": "rimraf ./out",
+    "build": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.84.0",
+    "glob": "^10.3.10",
+    "typescript": "^5.3.2",
+    "@vscode/test-electron": "2.3.6",
+    "@vscode/codicons": "^0.0.35",
+    "rimraf": "^5.0.5",
+    "symlink-dir": "^5.2.0"
+  }
+}
